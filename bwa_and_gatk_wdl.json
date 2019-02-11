@@ -17,6 +17,7 @@
     "data_processing.FASTQ_LIST":"/home/pk4/project/test_new_1/lists/fastq_list.txt",
     "data_processing.fastqc":"/usr/bin/fastqc",
     "data_processing.cutadapt":"/usr/local/bin/cutadapt",
+    "data_processing.adapters":"/home/pk4/project/test_new/lists/adapters.txt",
     "data_processing.bwa":"/home/pk4/software/bwa-0.7.16a/bwa",
     "data_processing.samtools":"/home/pk4/software/samtools-1.4.1/samtools",
     "data_processing.gatk":"/home/pk4/software/gatk-4.0.11.0/gatk-package-4.0.11.0-local.jar",
