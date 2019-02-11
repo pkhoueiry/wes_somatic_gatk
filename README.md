@@ -9,6 +9,7 @@ the <projectDir> should have the following structure:
     2- "lists" directory which contains two files:
         - "fastq_list.txt"
         - "intervals.bed"
+        - "adapters.txt"
 
             "fastq_list.txt" is a tab separated file and should contain all samples required for analysis:
                 sampleName1    sampleName1_R1.fastq.gz    sampleName1_R2.fastq.gz
@@ -16,6 +17,13 @@ the <projectDir> should have the following structure:
 
             "intervals.bed" is an intervals file in BED format.
 
-        Second, we have to specify the path of "fastq_list.txt" and "scatter_calling_intervals.txt" in the JSON file.
+            "adapters.txt" should hold adapters to be trimmed.
+            first line should contain first read adapter (forward) and the second
+            line should contain second read adapter (reverse)
+
+            AAAAAAAAAAAA
+            TTTTTTTTTTTT
+
+        Second, we have to specify the path of "fastq_list.txt", "intervals.bed" and "adapters.txt" in the JSON file.
 
 We can invoke each WDL and shell scripts separately.
