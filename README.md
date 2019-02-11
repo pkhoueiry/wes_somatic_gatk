@@ -16,13 +16,6 @@ the <projectDir> should have the following structure:
 
             "intervals.bed" is an intervals file in BED format.
 
-        "adapters.txt" should contain the adapters:
-            AAAAAAAAAAA
-            TTTTTTTTTTT
-
-        Second, we have to specify the path of "fastq_list.txt", "scatter_calling_intervals.txt" and "adapters.txt" in the JSON file.
-
-        Finally, we have to specify adapters in case we choose to do read trimming.
-        In the first line we put the adapter to be trimmed from the first read (forward) and the second line the adapter to be trimmed from the second read (reverse).
+        Second, we have to specify the path of "fastq_list.txt" and "scatter_calling_intervals.txt" in the JSON file.
 
 We can invoke each WDL and shell scripts separately.
