@@ -9,7 +9,6 @@ File FASTQ_LIST
 Array[Array[File]] samples = read_tsv(FASTQ_LIST)
 File SCATTER_CALLING_INTERVALS_LIST
 Array[File] scatter_intervals = read_lines(SCATTER_CALLING_INTERVALS_LIST)
-File adapters
 File fastqc
 File cutadapt
 File bwa
@@ -39,15 +38,6 @@ scatter (sample in samples){
             fastq2 = sample[2]
     }
 
-    call trimming{
-        input:
-            cutadapt = cutadapt,
-            fastq1 = sample[1],
-            fastq2 = sample[2],
-            sampleName = sample[0],
-            adapters = adapters
-    }
-        
     call bwa_mapping{
         input:
             ref = refFasta,
@@ -61,8 +51,8 @@ scatter (sample in samples){
             bwa = bwa,
             samtools = samtools,
             sampleName = sample[0],
-            fastq1_cutadapt = trimming.fastq1_cutadapt,
-            fastq2_cutadapt = trimming.fastq2_cutadapt
+            fastq1 = sample[1],
+            fastq2 = sample[2]
     }
 
     call MarkDuplicates{
@@ -136,28 +126,6 @@ task fastQC{
     }
 }
 
-task trimming{
-    File cutadapt
-    File fastq1
-    File fastq2
-    String sampleName
-    File adapters
-
-    command <<<
-        ${cutadapt} \
-        -a `cat ${adapters} | awk 'NR==1'` \
-        -A `cat ${adapters} | awk 'NR==2'` \
-        -m 22 \
-        -o ${sampleName}_R1_cutadapt.fastq.gz \
-        -p ${sampleName}_R2_cutadapt.fastq.gz \
-        ${fastq1} ${fastq2}
-    >>>
-
-    output {
-        File fastq1_cutadapt = "${sampleName}_R1_cutadapt.fastq.gz"
-        File fastq2_cutadapt = "${sampleName}_R2_cutadapt.fastq.gz"
-    }
-}
 
 task bwa_mapping{
     File ref
@@ -171,15 +139,15 @@ task bwa_mapping{
     File bwa
     File samtools
     String sampleName
-    File fastq1_cutadapt
-    File fastq2_cutadapt
+    File fastq1
+    File fastq2
 
     command {
         ${bwa} mem \
             -R "@RG\tID:"${sampleName}"\tLB:"${sampleName}"\tSM:"${sampleName}"\tPL:ILLUMINA" \
             -t 20 \
             ${ref} \
-            ${fastq1_cutadapt} ${fastq2_cutadapt} \
+            ${fastq1} ${fastq2} \
             | ${samtools} view -@ 20 -bSho - | ${samtools} sort -@ 20 - -o ${sampleName}.bam
 
         ${samtools} index -@ 2 ${sampleName}.bam

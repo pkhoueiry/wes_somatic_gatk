@@ -15,6 +15,7 @@
     "#data_processing":"Quality Check, adapter trimming, alignment, metrics, mark dup and baserecalibration",
     "data_processing.SCATTER_CALLING_INTERVALS_LIST":"/home/pk4/project/test_new_1/lists/intervals.txt",
     "data_processing.FASTQ_LIST":"/home/pk4/project/test_new_1/lists/fastq_list.txt",
+    "data_processing.adapters":"/home/pk4/project/test_new_1/lists/adapters.txt",
     "data_processing.fastqc":"/usr/bin/fastqc",
     "data_processing.cutadapt":"/usr/local/bin/cutadapt",
     "data_processing.bwa":"/home/pk4/software/bwa-0.7.16a/bwa",
