@@ -6,7 +6,7 @@ the <projectDir> should have the following structure:
     1- "fastq" directory which contains FASTQ files. FASTQ files should have the following naming style:
         sampleName_R1.fastq.gz and sampleName_R2.fastq.gz
     
-    2- "lists" directory which contains two files:
+    2- "lists" directory which contains three files:
         - "fastq_list.txt"
         - "intervals.bed"
         - "adapters.txt"
