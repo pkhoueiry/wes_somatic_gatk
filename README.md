@@ -33,5 +33,5 @@ We have to specify the path of all resources in the JSON file if this pipeline i
 
 We can invoke each WDL and shell scripts separately.
 
-*If we use the Docker, all you need is to use "fastq_list.txt", "scatter_calling_intervals.txt" and "adapters.txt"
+*If we use the Docker, all you need is to use "fastq_list.txt", "intervals.txt" and "adapters.txt"
 from "sample_lists" directory.
