@@ -24,8 +24,7 @@ the <projectDir> should have the following structure:
             AAAAAAAAAAAA
             TTTTTTTTTTTT
 
-        We have to specify the path of "fastq_list.txt", "intervals.txt" and "adapters.txt" in the JSON file
-        if this pipeline is used outside the Docker.*
+        We have to specify the path of all resources in the JSON file if this pipeline is used outside the Docker.*
 
 We can invoke each WDL and shell scripts separately.
 
