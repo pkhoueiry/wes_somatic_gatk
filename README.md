@@ -15,7 +15,12 @@ the projectDir should have the following structure:
                 sampleName1    sampleName1_R1.fastq.gz    sampleName1_R2.fastq.gz
                 sampleName2    sampleName2_R1.fastq.gz    sampleName2_R2.fastq.gz
 
-            "intervals.txt" is an intervals file in TXT format for scattering.
+            "intervals.txt" should contain a list of full path of all intervals:
+            path/to/intervals/scattered_calling_intervals/temp_0001_of_50/scattered.interval_list
+            path/to/intervals/scattered_calling_intervals/temp_0002_of_50/scattered.interval_list
+            path/to/intervals/scattered_calling_intervals/temp_0003_of_50/scattered.interval_list
+            path/to/intervals/scattered_calling_intervals/temp_0004_of_50/scattered.interval_list
+            path/to/intervals/scattered_calling_intervals/temp_0005_of_50/scattered.interval_list
 
             "adapters.txt" should hold adapters to be trimmed.
             first line should contain first read adapter (forward) and the second
