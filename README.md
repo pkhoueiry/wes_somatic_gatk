@@ -1,6 +1,6 @@
 WES Somatic scatter-gather pipeline
 
-This pipeline runs by just invoking run.sh /path/to/projectDir in command line.
+This pipeline runs by just invoking `run.sh /path/to/projectDir` in command line.
 the projectDir should have the following structure:
     
     1- "fastq" directory which contains FASTQ files. FASTQ files should have the following naming style:
