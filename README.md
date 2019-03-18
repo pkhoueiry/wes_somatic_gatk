@@ -35,3 +35,5 @@ We can invoke each WDL and shell scripts separately.
 
 *If we use the Docker, all you need is to use "fastq_list.txt", "intervals.txt" and "adapters.txt"
 from "sample_lists" directory.
+
+docker command: `docker run -it -v /path/to/projectDir/:/data/ pklab/wes_pipelines
