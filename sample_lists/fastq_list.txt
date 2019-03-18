@@ -1,0 +1,1 @@
+sampleName1    /data/fastq/sampleName1_R1.fastq.gz    /data/fastq/sampleName1_R2.fastq.gz

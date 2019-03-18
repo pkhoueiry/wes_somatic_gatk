@@ -8,14 +8,14 @@ the <projectDir> should have the following structure:
     
     2- "lists" directory which contains three files:
         - "fastq_list.txt"
-        - "intervals.bed"
+        - "intervals.txt"
         - "adapters.txt"
 
             "fastq_list.txt" is a tab separated file and should contain all samples required for analysis:
                 sampleName1    sampleName1_R1.fastq.gz    sampleName1_R2.fastq.gz
                 sampleName2    sampleName2_R1.fastq.gz    sampleName2_R2.fastq.gz
 
-            "intervals.bed" is an intervals file in BED format.
+            "intervals.txt" is an intervals file in TXT format for scattering.
 
             "adapters.txt" should hold adapters to be trimmed.
             first line should contain first read adapter (forward) and the second
@@ -24,6 +24,7 @@ the <projectDir> should have the following structure:
             AAAAAAAAAAAA
             TTTTTTTTTTTT
 
-        We have to specify the path of "fastq_list.txt", "intervals.bed" and "adapters.txt" in the JSON file.
+        We have to specify the path of "fastq_list.txt", "intervals.txt" and "adapters.txt" in the JSON file
+        if this pipeline is used outside the Docker.
 
 We can invoke each WDL and shell scripts separately.
