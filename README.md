@@ -26,8 +26,7 @@ the projectDir should have the following structure:
 
         AAAAAAAAAAAA
         TTTTTTTTTTTT
-We have to specify the path of all resources in the JSON file if this pipeline is used outside the Docker.*
-We can invoke each WDL and shell scripts separately.
-*If we use the Docker, all you need is to use "fastq_list.txt", "intervals.txt" and "adapters.txt"
-from "sample_lists" directory.  
+*We have to specify the path of all resources in the JSON file if this pipeline is used outside the Docker.*
+*We can invoke each WDL and shell scripts separately.*
+*If we use the Docker, all you need is to use "fastq_list.txt", "intervals.txt" and "adapters.txt" from "sample_lists" directory.*
 docker command: `docker run -it -v /path/to/projectDir/:/data/ pklab/wes_pipelines`
