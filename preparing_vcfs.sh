@@ -4,7 +4,7 @@ projectDir=$1
 ##create a directory called "vcfs" where we gather all vcfs in one place by creating hard link
 echo ${projectDir}/
 mkdir ${projectDir}/vcfs/
-for f in ${projectDir}/cromwell-executions/mutect_variant_calling/*/call-MuTect2/shard-*/execution/*.vcf; do 
+for f in ${projectDir}/cromwell-executions*/mutect_variant_calling/*/call-MuTect2/shard-*/execution/*.vcf; do 
     foldername="$f";
     
     file=${foldername##*/}
@@ -49,11 +49,17 @@ done
 rm -f ${projectDir}/lists/samples_names.txt
 cut -f 1 ${projectDir}/lists/fastq_list.txt > ${projectDir}/lists/samples_names.txt
 
+#from the list created above, we just split each sample in a text file
 while IFS= read -r line; do
-    grep "$line" ${projectDir}/lists/vcfs.txt >> ${projectDir}/lists/$line.list; 
+	line+=".vcf"
+	grep -F "${line}" ${projectDir}/lists/vcfs.txt >> ${projectDir}/lists/$line.list;
 done < ${projectDir}/lists/samples_names.txt
 
-#from the list created above, we just split each sample in a text file
+for f in ${projectDir}/lists/*.vcf.list; do 
+        bn=$(basename $f | cut -f 1 -d"."); mv $f ${projectDir}/lists/$bn.list;
+done
+
+#we create list of lists
 for f in ${projectDir}/lists/*.list ; do
     echo $f >> ${projectDir}/lists/vcfs_samples_lists.txt
 done
