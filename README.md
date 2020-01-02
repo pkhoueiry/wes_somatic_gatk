@@ -8,6 +8,7 @@ the `projectDir` should have the following structure:
     sampleName_R1.fastq.gz and sampleName_R2.fastq.gz
 
 2- "lists" directory which contains three files:
+
     - "fastq_list.txt"
     - "intervals.txt"
     - "adapters.txt"
