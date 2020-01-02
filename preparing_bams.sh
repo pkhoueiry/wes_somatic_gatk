@@ -47,7 +47,7 @@ cut -f 1 ${projectDir}/lists/fastq_list.txt > ${projectDir}/lists/samples_names.
 echo "Merging BAM files..."
 while IFS= read -r line; do
     echo "merging $line"
-    /home/pklab/software/samtools-1.8/samtools merge -@ 30 ${projectDir}/merged_bams/"$line".bam ${projectDir}/merged_bams/shard*_"$line"_*.bam
+    samtools merge -@ 30 ${projectDir}/merged_bams/"$line".bam ${projectDir}/merged_bams/shard*_"$line"_*.bam
     rm ${projectDir}/merged_bams/shard-*_"$line"_*.bam
     mv ${projectDir}/merged_bams/"$line".bam ${projectDir}/merged_bams/"$line"_recal_dedup.bam
 done < ${projectDir}/lists/samples_names.txt
