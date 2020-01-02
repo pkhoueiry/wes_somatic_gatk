@@ -9,9 +9,9 @@ the `projectDir` should have the following structure:
 
 2- "lists" directory which contains three files:
 
-    - "fastq_list.txt"
-    - "intervals.txt"
-    - "adapters.txt"
+        - "fastq_list.txt"
+        - "intervals.txt"
+        - "adapters.txt"
 
         "fastq_list.txt" is a tab separated file and should contain all samples required for analysis:
             sampleName1    sampleName1_R1.fastq.gz    sampleName1_R2.fastq.gz
