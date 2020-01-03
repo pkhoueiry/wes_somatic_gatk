@@ -22,7 +22,7 @@ if [ ! -d "${projectDir}"/fastq ] || [ ! -d "${projectDir}"/lists ]; then
     exit 1
 else {
 
-    #read -p 'Any adapters to trim?(Y/N): ' choice
+    read -p 'Any adapters to trim?(Y/N): ' choice
 
     time (
     # java -jar ${cromwell} \
