@@ -5,7 +5,7 @@ Whole Exome Sequencing (WES) pipelines are built using WDL scripts (Workflow Des
 
 The pipelines follow the best practices proposed by Broad Institute and use open-source state-of-the-art tools. The following diagram summarizes the germline and somatic analysis (tumor only and tumor/normal):
 
-![alt text](wes_workflow/wes_pipelines.png "WES Pipelines")
+![alt text](wes_workflow/wes_pipelines.png "Whole Exome Sequencing Pipelines")
 
 The pipelines consist of WDL scripts that run the analysis and shell scripts that act as intermediate steps. The pipelines are tested successfully using the following list of properly installed tools and dependencies: 
 
