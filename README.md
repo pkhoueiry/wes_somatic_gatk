@@ -1,4 +1,4 @@
-Whole Exome Sequencing Pipeline - Somatic Analysis
+## Whole Exome Sequencing Pipeline - Somatic Analysis
 #### Using the Scatter-Gather technique provided by Broad Institute
 
 Whole Exome Sequencing (WES) pipelines are built using WDL scripts (Workflow Description Language) provided by Broad Institute. 
