@@ -23,21 +23,25 @@ if [ ! -d "${projectDir}"/fastq ] || [ ! -d "${projectDir}"/lists ]; then
 else {
 
     read -p 'Any adapters to trim?(Y/N): ' choice
+    echo "Are these Tumor only samples or Tumor/Normal samples?"
+    read -p 'choose 1 for tumor only and 2 for tumor/normal samples: ' tumor_normal_choice
+
+    export tumor_normal_choice
 
     time (
-    # java -jar ${cromwell} \
-    #     run ${scripts_path}/splitting_bed_file.wdl \
-    #     --inputs ${scripts_path}/bwa_and_gatk_wdl.json
+#     java -jar ${cromwell} \
+ #        run ${scripts_path}/splitting_bed_file.wdl \
+  #       --inputs ${scripts_path}/bwa_and_gatk_wdl.json
 
-    # wait
+   #  wait
 
     # ${scripts_path}/listing_intervals.sh ${projectDir}
 
-    # wait
+     #wait
 
     if [ "$choice" = "Y" ] || [ "$choice" = "y" ] || [ "$choice" = "Yes" ] || [ "$choice" = "yes" ] || [ "$choice" = "YES" ]; then
     printf -- '\033[33m You have chosen to trim adapters... \033[0m\n';
-    
+
     java -jar ${cromwell} \
         run ${scripts_path}/data_processing.wdl \
         --inputs ${scripts_path}/bwa_and_gatk_wdl.json
@@ -57,11 +61,22 @@ else {
 
     wait
 
+    if [ "$tumor_normal_choice" == 2 ]; then
+
+    java -jar ${cromwell} \
+	run ${scripts_path}/mutect2_variant_calling_tumor_normal.wdl \
+	--inputs ${scripts_path}/bwa_and_gatk_wdl.json
+
+    wait
+
+    else
+
     java -jar ${cromwell} \
         run ${scripts_path}/mutect2_variant_calling.wdl \
         --inputs ${scripts_path}/bwa_and_gatk_wdl.json
 
     wait
+    fi
 
     ${scripts_path}/preparing_vcfs.sh ${projectDir}
 

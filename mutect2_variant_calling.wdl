@@ -1,4 +1,5 @@
 #WDL somatic variant calling using Mutect2 from GATK
+#Tumor only
 
 workflow mutect_variant_calling{
 

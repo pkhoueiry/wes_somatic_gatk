@@ -17,6 +17,15 @@ the `projectDir` should have the following structure:
             sampleName1    sampleName1_R1.fastq.gz    sampleName1_R2.fastq.gz
             sampleName2    sampleName2_R1.fastq.gz    sampleName2_R2.fastq.gz
 
+        In the case of somatic analysis having tumor/normal samples, samples should be named in the following format (the order of samples in this file does not matter):
+
+            sampleName1-T	sampleName1-T_R1.fastq.gz	sampleName1-T_R2.fastq.gz
+            sampleName1-N	sampleName1-N_R1.fastq.gz	sampleName1-N_R2.fastq.gz
+            sampleName2-T	sampleName2-T_R1.fastq.gz	sampleName2-T_R2.fastq.gz
+            sampleName2-N	sampleName2-N_R1.fastq.gz	sampleName2-N_R2.fastq.gz
+        
+&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;*where 'T' refers to 'Tumor' and 'N' refers to 'Normal'*
+
         "intervals.txt" should contain a list of full path of all intervals:
         path/to/intervals/scattered_calling_intervals/temp_0001_of_50/scattered.interval_list
         path/to/intervals/scattered_calling_intervals/temp_0002_of_50/scattered.interval_list
