@@ -44,7 +44,9 @@ the `projectDir` should have the following structure:
         - "intervals.txt"
         - "adapters.txt"
 
-        "fastq_list.txt" is a tab separated file and should contain all samples required for analysis:
+        "fastq_list.txt" is a tab separated file and should contain all samples required for analysis.
+        first column refers to sample name, second and third columns refer to full paths of 
+        forward and reverse FASTQ files respectively:
             sampleName1    sampleName1_R1.fastq.gz    sampleName1_R2.fastq.gz
             sampleName2    sampleName2_R1.fastq.gz    sampleName2_R2.fastq.gz
 
