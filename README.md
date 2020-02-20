@@ -1,9 +1,16 @@
 ## Whole Exome Sequencing Pipeline - Somatic Analysis
-#### Using the Scatter-Gather technique provided by Broad Institute
+#### Using the Scatter-Gather technique provided by the Broad Institute
 
-Whole Exome Sequencing (WES) pipelines are built using WDL scripts (Workflow Description Language) provided by Broad Institute. 
+This repository contains an implementation of the Whole Exome Sequencing (WES) pipeline based on GATK best practices workflows using WDL scripts (Workflow Description Language).
 
-The pipelines follow the best practices proposed by Broad Institute and use open-source state-of-the-art tools. The following diagram summarizes the germline and somatic analysis (tumor only and tumor/normal):
+
+1) Optimized to run samples in parallel
+2) The Docker version allow users to chose the number of samples to run in parallel based on available resources (threads and memory)
+3) WDL and JSON made easy by removing "unecessary statements"
+4) Single line command to run the whole pipeline (QC, trimming, mapping, markduplicates, base recalibration, variant calling, annotation)
+
+The diagram below summarizes the germline and somatic analysis (tumor only or tumor/normal).
+
 
 ![alt text](wes_workflow/wes_pipelines.png "Whole Exome Sequencing Pipelines")
 
@@ -14,11 +21,11 @@ The pipelines consist of WDL scripts that run the analysis and shell scripts tha
     FastQC v0.11.5 
     BWA 0.7.17-r1194-dirty 
     Cutadapt 1.18 
-    Samtools 1.8 – should be installed in the PATH 
+    Samtools 1.8 – should be in the PATH 
     GATK-4.0.11.0 
     Tabix 0.2.5 
 
-Also, you should download the human reference genome and create its index using BWA. In addition, some databases should be downloaded too: 
+Also, you should download the human reference genome and create its index using BWA. In addition, some databases used for annotating the output should be downloaded too: 
 
     dbsnp
     phase1snps 
@@ -40,11 +47,13 @@ the `projectDir` should have the following structure:
 
 2- "lists" directory which contains three files:
 
-        - "fastq_list.txt"
-        - "intervals.txt"
-        - "adapters.txt"
+&ensp;&ensp;&ensp;&ensp;**1) fastq_list.txt**
 
-        "fastq_list.txt" is a tab separated file and should contain all samples required for analysis:
+&ensp;&ensp;&ensp;&ensp;**2) intervals.txt**
+
+&ensp;&ensp;&ensp;&ensp;**3) adapters.txt**
+
+&ensp;&ensp;&ensp;&ensp;**1) "fastq_list.txt"** is a tab separated file and should contain all samples required for analysis:
             sampleName1    sampleName1_R1.fastq.gz    sampleName1_R2.fastq.gz
             sampleName2    sampleName2_R1.fastq.gz    sampleName2_R2.fastq.gz
 
@@ -58,14 +67,14 @@ the `projectDir` should have the following structure:
         
 &ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;*where 'T' refers to 'Tumor' and 'N' refers to 'Normal'*
 
-        "intervals.txt" should contain a list of full path of all intervals in BED format:
+&ensp;&ensp;&ensp;&ensp;**2) "intervals.txt"** should contain a list of full path of all intervals in BED format:
         path/to/intervals/scattered_calling_intervals/temp_0001_of_50/scattered.interval_list
         path/to/intervals/scattered_calling_intervals/temp_0002_of_50/scattered.interval_list
         path/to/intervals/scattered_calling_intervals/temp_0003_of_50/scattered.interval_list
         path/to/intervals/scattered_calling_intervals/temp_0004_of_50/scattered.interval_list
         path/to/intervals/scattered_calling_intervals/temp_0005_of_50/scattered.interval_list
 
-        "adapters.txt" should hold adapters to be trimmed.
+&ensp;&ensp;&ensp;&ensp;**3) "adapters.txt"** should hold adapters to be trimmed.
         first line should contain first read adapter (forward) and the second
         line should contain second read adapter (reverse) 
 
