@@ -63,10 +63,10 @@ in the following format *where 'T' refers to 'Tumor' and 'N' refers to 'Normal'*
 &ensp;&ensp;&ensp;&ensp;**2) intervals.txt** Contains a list of full path of all intervals in BED format:
 
             path/to/intervals/scattered_calling_intervals/temp_0001_of_50/scattered.interval_list
-			path/to/intervals/scattered_calling_intervals/temp_0002_of_50/scattered.interval_list
-			path/to/intervals/scattered_calling_intervals/temp_0003_of_50/scattered.interval_list
-			path/to/intervals/scattered_calling_intervals/temp_0004_of_50/scattered.interval_list
-			path/to/intervals/scattered_calling_intervals/temp_0005_of_50/scattered.interval_list
+            path/to/intervals/scattered_calling_intervals/temp_0002_of_50/scattered.interval_list
+            path/to/intervals/scattered_calling_intervals/temp_0003_of_50/scattered.interval_list
+            path/to/intervals/scattered_calling_intervals/temp_0004_of_50/scattered.interval_list
+            path/to/intervals/scattered_calling_intervals/temp_0005_of_50/scattered.interval_list
 
 &ensp;&ensp;&ensp;&ensp;**3) adapters.txt** Contains adapters to be trimmed: 
 
