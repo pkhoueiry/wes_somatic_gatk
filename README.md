@@ -42,7 +42,8 @@ Each one of the WDL and shell scripts can be invoked independently by providing 
 the `projectDir` should have the following structure:  
 
 1- A directory named "fastq" which contains FASTQ files. FASTQ files should have the following naming style:
-    sampleName_R1.fastq.gz and sampleName_R2.fastq.gz
+
+            sampleName_R1.fastq.gz and sampleName_R2.fastq.gz
 
 2- A directory named "lists" containing three files:
 
