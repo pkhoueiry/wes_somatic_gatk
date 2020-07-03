@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+<title>README.html</title>
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+
+</head>
+
+<body>
+
+<h2 id="whole-exome-sequencing-pipeline---somatic-analysis">Whole Exome Sequencing Pipeline - Somatic Analysis</h2>
+<h4 id="using-scatter-gather-option-provided-by-the-broad-institute-for-faster-runs">Using Scatter-Gather option provided by the Broad Institute for faster runs</h4>
+<p>This repository contains an implementation of the Whole Exome Sequencing (WES) pipeline based on GATK best practices workflows using WDL scripts (Workflow Description Language).</p>
+<ol type="1">
+<li>The pipeline is optimized to run samples in parallel</li>
+<li>The Docker version allow users to chose the number of samples to run in parallel based on available resources (threads and memory; available upon request)</li>
+<li>WDL and JSON made easy by removing “excessive statements”</li>
+<li>Single line command to run the whole pipeline (QC, trimming, mapping, markduplicates, base recalibration, variant calling and annotation)</li>
+</ol>
+<p>The diagram below summarizes the germline and somatic analysis (on tumor only or on tumor/normal pairs if available).</p>
+<figure>
+<img src="wes_workflow/wes_pipelines.png" title="Whole Exome Sequencing Pipelines" alt="" /><figcaption>alt text</figcaption>
+</figure>
+<p>The pipelines consist of WDL scripts that run the analysis in addition to shell scripts that act as intermediate steps. The pipelines were tested successfully based on the following dependencies:</p>
+<pre><code>Java 8 
+Cromwell v36 
+FastQC v0.11.5 
+BWA 0.7.17-r1194-dirty 
+Cutadapt 1.18 
+Samtools 1.8 – should be in the PATH 
+GATK-4.0.11.0 
+Tabix 0.2.5 </code></pre>
+<p>Also, you should download the human reference genome and create its index using BWA. In addition, some databases used for base recalibration should be downloaded too:</p>
+<pre><code>dbsnp
+phase1snps 
+Mills_and_1000G_gold_standard 
+HapMap 
+Omni 
+Axiom </code></pre>
+<p>You can download the reference genome and its index, the intervals and the databases listed above from resources directory provided by Broad Institute from the following link:</p>
+<p>https://console.cloud.google.com/storage/browser/genomics-public-data/resources/broad/hg38/v0/?pli=1</p>
+<p>Each one of the WDL and shell scripts can be invoked independently by providing the project directory as argument.</p>
+<p>the <code>projectDir</code> should have the following structure:</p>
+<p>1- A directory named “fastq” which contains FASTQ files. FASTQ files should have the following naming style: sampleName_R1.fastq.gz and sampleName_R2.fastq.gz</p>
+<p>2- A directory named “lists” containing three files:</p>
+<p>    <strong>1) fastq_list.txt:</strong> A tab separated file listing samples in the following format:</p>
+<pre><code>        sampleName1    sampleName1_R1.fastq.gz    sampleName1_R2.fastq.gz
+        sampleName2    sampleName2_R1.fastq.gz    sampleName2_R2.fastq.gz</code></pre>
+<p>In the case of somatic analysis with tumor/normal samples, samples should be named in the following format <em>where ‘T’ refers to ‘Tumor’ and ‘N’ refers to ‘Normal’</em> (the order of samples in this file does not matter):</p>
+<pre><code>        sampleName1-T   sampleName1-T_R1.fastq.gz   sampleName1-T_R2.fastq.gz
+        sampleName1-N   sampleName1-N_R1.fastq.gz   sampleName1-N_R2.fastq.gz
+        sampleName2-T   sampleName2-T_R1.fastq.gz   sampleName2-T_R2.fastq.gz
+        sampleName2-N   sampleName2-N_R1.fastq.gz   sampleName2-N_R2.fastq.gz</code></pre>
+<p>    <strong>2) intervals.txt</strong> Contains a list of full path of all intervals in BED format:</p>
+<pre><code>        path/to/intervals/scattered_calling_intervals/temp_0001_of_50/scattered.interval_list
+        path/to/intervals/scattered_calling_intervals/temp_0002_of_50/scattered.interval_list
+        path/to/intervals/scattered_calling_intervals/temp_0003_of_50/scattered.interval_list
+        path/to/intervals/scattered_calling_intervals/temp_0004_of_50/scattered.interval_list
+        path/to/intervals/scattered_calling_intervals/temp_0005_of_50/scattered.interval_list</code></pre>
+<p>    <strong>3) adapters.txt</strong> Contains adapters to be trimmed:</p>
+<pre><code>        The first line should contain first read adapter (forward) and the second
+        line should contain second read adapter (reverse) </code></pre>
+<p>To run the pipeline, you must specify full paths for each tool and database in the JSON file. Once done, you can invoke the pipeline using the following command:</p>
+<p><code>/path/to/run.sh /path/to/project/directory /path/to/cromwell.jar</code></p>
+<p>To use the Docker image (available upon request), you must prepare the ‘project directory’ as mentioned above and invoke the Docker image using the following command:</p>
+<p><code>docker run -it -v /path/to/project/directory/:/data/ pklab/wes_pipelines</code></p>
+<p><em>You can invoke each WDL and shell scripts separately.</em><br />
+<em>If you use the Docker, all you need is to use “fastq_list.txt”, “intervals.txt” and “adapters.txt” in the “lists” directory.</em></p>
+
+</body>
+</html>
