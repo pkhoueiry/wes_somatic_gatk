@@ -49,8 +49,8 @@ the `projectDir` should have the following structure:
 
 &ensp;&ensp;&ensp;&ensp;**1) fastq_list.txt:** A tab separated file listing samples in the following format:
 
-            sampleName1    sampleName1_R1.fastq.gz    sampleName1_R2.fastq.gz
-            sampleName2    sampleName2_R1.fastq.gz    sampleName2_R2.fastq.gz
+        sampleName1    sampleName1_R1.fastq.gz    sampleName1_R2.fastq.gz
+        sampleName2    sampleName2_R1.fastq.gz    sampleName2_R2.fastq.gz
 
 In the case of somatic analysis with tumor/normal samples, samples should be named
 in the following format *where 'T' refers to 'Tumor' and 'N' refers to 'Normal'*
